@@ -35,3 +35,5 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
 });
+
+Route::post('/profile/update', [AuthController::class, 'profileUpdate'])->name('profile.update');
