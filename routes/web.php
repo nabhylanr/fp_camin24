@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +32,16 @@ Route::middleware('auth')->group(function (){
         Route::get('edit/{id}', 'edit')->name('students.edit');
         Route::put('edit/{id}', 'update')->name('students.update');
         Route::delete('destroy/{id}', 'destroy')->name('students.destroy');
+    });
+
+    Route::controller(TeacherController::class)->prefix('teachers')->group(function () {
+        Route::get('', 'index')->name('teachers');
+        Route::get('create', 'create')->name('teachers.create');
+        Route::post('store', 'store')->name('teachers.store');
+        Route::get('show/{id}', 'show')->name('teachers.show');
+        Route::get('edit/{id}', 'edit')->name('teachers.edit');
+        Route::put('edit/{id}', 'update')->name('teachers.update');
+        Route::delete('destroy/{id}', 'destroy')->name('teachers.destroy');
     });
 
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
